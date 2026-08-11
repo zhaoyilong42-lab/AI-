@@ -1,22 +1,16 @@
 import React from 'react';
 import { ActiveTab } from '../types';
-import { Sun, Moon, Download, Sparkles } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 
 interface NavbarProps {
   activeTab: ActiveTab;
   setActiveTab: (tab: ActiveTab) => void;
-  isDarkMode: boolean;
-  toggleDarkMode: () => void;
-  onOpenResume: () => void;
   userName: string;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   activeTab,
   setActiveTab,
-  isDarkMode,
-  toggleDarkMode,
-  onOpenResume,
   userName
 }) => {
   const navItems: { id: ActiveTab; label: string; enLabel: string }[] = [
@@ -72,31 +66,6 @@ export const Navbar: React.FC<NavbarProps> = ({
               );
             })}
           </nav>
-
-          {/* Right Action Controls */}
-          <div className="flex items-center gap-2 sm:gap-3">
-            {/* Download Resume Button */}
-            <button
-              onClick={onOpenResume}
-              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm"
-            >
-              <Download className="w-4 h-4 text-purple-600 dark:text-purple-400" />
-              <span>下载简历</span>
-            </button>
-
-            {/* Dark Mode Switch Toggle */}
-            <button
-              onClick={toggleDarkMode}
-              aria-label="切换深色/浅色模式"
-              className="p-2 text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors shadow-sm"
-            >
-              {isDarkMode ? (
-                <Sun className="w-5 h-5 text-amber-400" />
-              ) : (
-                <Moon className="w-5 h-5 text-slate-600" />
-              )}
-            </button>
-          </div>
         </div>
 
         {/* Mobile Sub-Navigation Bar */}
