@@ -8,10 +8,7 @@ import { ExperienceSection } from './components/ExperienceSection';
 import { ProjectsSection } from './components/ProjectsSection';
 import { SkillsSection } from './components/SkillsSection';
 import { ContactSection } from './components/ContactSection';
-import { ProjectModal } from './components/ProjectModal';
-import { ResumeModal } from './components/ResumeModal';
-import { UploadVideoModal } from './components/UploadVideoModal';
-import { loadUserProjects, saveUserProjects } from './utils/storage';
+import { loadUserProjects } from './utils/storage';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<ActiveTab>('home');
@@ -25,9 +22,6 @@ export default function App() {
   });
 
   const [projectsList, setProjectsList] = useState<Project[]>(initialProjects);
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [isResumeOpen, setIsResumeOpen] = useState(false);
-  const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
 
   // Load custom saved projects from IndexedDB on initial mount
   useEffect(() => {
@@ -49,71 +43,6 @@ export default function App() {
       }
     });
   }, []);
-
-  const handleAddProject = (newProject: Project) => {
-    setProjectsList((prev) => {
-      const updated = [newProject, ...prev];
-      saveUserProjects(updated).catch(e => console.error('Failed to save projects:', e));
-      localStorage.setItem('portfolio_projects_saved', 'true');
-      return updated;
-    });
-    setSelectedProject(newProject);
-  };
-
-  const handleUpdateProjectVideo = (projectId: string, videoUrl: string, videoBlobKey?: string) => {
-    setProjectsList((prev) => {
-      const updated = prev.map((p) =>
-        p.id === projectId ? { ...p, videoUrl, ...(videoBlobKey ? { videoBlobKey } : {}) } : p
-      );
-      saveUserProjects(updated).catch(e => console.error('Failed to save projects:', e));
-      localStorage.setItem('portfolio_projects_saved', 'true');
-      return updated;
-    });
-    if (selectedProject && selectedProject.id === projectId) {
-      setSelectedProject((prev) =>
-        prev ? { ...prev, videoUrl, ...(videoBlobKey ? { videoBlobKey } : {}) } : null
-      );
-    }
-  };
-
-  const handleUpdateProjectDouyinUrl = (projectId: string, douyinUrl: string) => {
-    setProjectsList((prev) => {
-      const updated = prev.map((p) =>
-        p.id === projectId ? { ...p, douyinUrl } : p
-      );
-      saveUserProjects(updated).catch(e => console.error('Failed to save projects:', e));
-      localStorage.setItem('portfolio_projects_saved', 'true');
-      return updated;
-    });
-    if (selectedProject && selectedProject.id === projectId) {
-      setSelectedProject((prev) =>
-        prev ? { ...prev, douyinUrl } : null
-      );
-    }
-  };
-
-  const handleDeleteProject = (projectId: string) => {
-    let confirmed = true;
-    try {
-      confirmed = window.confirm('确定要删除这个作品吗？');
-    } catch (error) {
-      // 如果在 iframe 预览环境中 window.confirm 被拦截报错，则默认允许删除
-      console.warn('window.confirm is blocked, proceeding with deletion.');
-      confirmed = true;
-    }
-
-    if (confirmed) {
-      setProjectsList((prev) => {
-        const updated = prev.filter((p) => p.id !== projectId);
-        saveUserProjects(updated).catch(e => console.error('Failed to save projects:', e));
-        localStorage.setItem('portfolio_projects_saved', 'true');
-        return updated;
-      });
-      if (selectedProject && selectedProject.id === projectId) {
-        setSelectedProject(null);
-      }
-    }
-  };
 
   // Sync dark class on html root element
   useEffect(() => {
@@ -143,9 +72,6 @@ export default function App() {
       <Navbar
         activeTab={activeTab}
         setActiveTab={handleTabChange}
-        isDarkMode={isDarkMode}
-        toggleDarkMode={toggleDarkMode}
-        onOpenResume={() => setIsResumeOpen(true)}
         userName={initialProfile.name}
       />
 
@@ -156,7 +82,6 @@ export default function App() {
             <HeroSection
               profile={initialProfile}
               setActiveTab={handleTabChange}
-              onOpenResume={() => setIsResumeOpen(true)}
             />
             <AboutSection profile={initialProfile} />
             <ExperienceSection
@@ -167,7 +92,6 @@ export default function App() {
             <SkillsSection skillGroups={skillGroups} />
             <ProjectsSection
               projects={projectsList}
-              onSelectProject={(proj) => setSelectedProject(proj)}
             />
             <ContactSection profile={initialProfile} />
           </div>
@@ -200,43 +124,10 @@ export default function App() {
           <div key="tab-projects" className="animate-fadeIn py-6">
             <ProjectsSection
               projects={projectsList}
-              onSelectProject={(proj) => setSelectedProject(proj)}
             />
           </div>
         )}
       </main>
-
-      {/* Modals */}
-      {selectedProject && (
-        <ProjectModal
-          key={`modal-${selectedProject.id}`}
-          project={selectedProject}
-          onClose={() => setSelectedProject(null)}
-          onUpdateProjectVideo={handleUpdateProjectVideo}
-          onUpdateProjectDouyinUrl={handleUpdateProjectDouyinUrl}
-        />
-      )}
-
-      {isUploadModalOpen && (
-        <UploadVideoModal
-          key="upload-modal"
-          isOpen={isUploadModalOpen}
-          onClose={() => setIsUploadModalOpen(false)}
-          onAddProject={handleAddProject}
-        />
-      )}
-
-      {isResumeOpen && (
-        <ResumeModal
-          key="resume-modal"
-          isOpen={isResumeOpen}
-          onClose={() => setIsResumeOpen(false)}
-          profile={initialProfile}
-          experiences={experiences}
-          education={education}
-          skillGroups={skillGroups}
-        />
-      )}
 
     </div>
   );
