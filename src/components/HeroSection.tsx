@@ -5,13 +5,11 @@ import { ArrowDown, Mail, Github, Download, Sparkles, ExternalLink, PlayCircle, 
 interface HeroSectionProps {
   profile: ProfileInfo;
   setActiveTab: (tab: ActiveTab) => void;
-  onOpenResume: () => void;
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({
   profile,
-  setActiveTab,
-  onOpenResume
+  setActiveTab
 }) => {
   return (
     <section className="relative py-12 sm:py-20 lg:py-24 overflow-hidden">
@@ -65,14 +63,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 className="px-5 py-3 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 font-medium text-sm sm:text-base border border-slate-200 dark:border-slate-700 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700/80 transition-all shadow-sm"
               >
                 联系我
-              </button>
-
-              <button
-                onClick={onOpenResume}
-                className="px-4 py-3 bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 font-medium text-sm sm:text-base rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-all flex items-center gap-1.5"
-              >
-                <Download className="w-4 h-4" />
-                <span>预览简历</span>
               </button>
             </div>
 
