@@ -173,6 +173,32 @@ export const skillGroups: SkillGroup[] = [
 
 export const projects: Project[] = [
   {
+    id: "user-proj-8",
+    title: "酒吧网页模板",
+    subtitle: "Drank Pub Food & Drink",
+    category: "ai-vibe",
+    categoryName: "AI Vibe coding",
+    coverImage: "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1200&q=80",
+    description: "酒吧餐饮主题网页模板，展示餐点、饮品与氛围感设计。",
+    tags: ["网页设计", "酒吧", "AI Vibe Coding"],
+    date: "2026.08",
+    featured: true,
+    externalUrl: "https://drank-pub-food-drink.zhaoyilong42.chatgpt.site/"
+  },
+  {
+    id: "user-proj-9",
+    title: "欧洲徒步一日游",
+    subtitle: "European Hiking Day Trip",
+    category: "ai-vibe",
+    categoryName: "AI Vibe coding",
+    coverImage: "https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=1200&q=80",
+    description: "面向欧洲一日徒步行程的网页，帮助探索路线与户外体验。",
+    tags: ["网页设计", "欧洲徒步", "AI Vibe Coding"],
+    date: "2026.08",
+    featured: true,
+    externalUrl: "https://europe-hiking.onrender.com/"
+  },
+  {
     id: "user-proj-1",
     title: "AI变身超级英雄",
     subtitle: "抖音热门 AI 视觉特效",

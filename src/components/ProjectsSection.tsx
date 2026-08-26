@@ -87,7 +87,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
           {filteredProjects.map((project) => (
             <a
               key={project.id}
-              href={project.douyinUrl || '#'}
+              href={project.externalUrl || project.douyinUrl || '#'}
               target="_blank"
               rel="noopener noreferrer"
               className="group block bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 hover:border-purple-500 transition-all duration-300 hover:shadow-lg"
