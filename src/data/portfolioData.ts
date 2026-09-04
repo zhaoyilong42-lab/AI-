@@ -173,6 +173,19 @@ export const skillGroups: SkillGroup[] = [
 
 export const projects: Project[] = [
   {
+    id: "user-proj-12",
+    title: "2天1夜 尼斯Vlog",
+    subtitle: "法国尼斯两日旅行记录",
+    category: "vlog",
+    categoryName: "Vlog 记录",
+    coverImage: "https://images.unsplash.com/photo-1529260830199-42c24126f198?auto=format&fit=crop&w=1200&q=80",
+    description: "记录法国尼斯两天一夜的海岸之旅，感受南法阳光与地中海风光。",
+    tags: ["尼斯", "法国", "旅行Vlog"],
+    date: "2026.05",
+    featured: true,
+    douyinUrl: "https://v.douyin.com/Kp94xKyyOzo/"
+  },
+  {
     id: "user-proj-10",
     title: "Flower-nail 美甲店",
     subtitle: "Flower Nail Crema Salon",
