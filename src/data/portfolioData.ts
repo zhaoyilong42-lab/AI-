@@ -173,6 +173,32 @@ export const skillGroups: SkillGroup[] = [
 
 export const projects: Project[] = [
   {
+    id: "user-proj-10",
+    title: "Flower-nail 美甲店",
+    subtitle: "Flower Nail Crema Salon",
+    category: "ai-vibe",
+    categoryName: "AI Vibe coding",
+    coverImage: "https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1200&q=80",
+    description: "美甲店展示网站，呈现精致的美甲服务与沙龙风格。",
+    tags: ["网页设计", "美甲店", "AI Vibe Coding"],
+    date: "2026.09",
+    featured: true,
+    externalUrl: "https://flower-nail-crema-salon.zhaoyilong42.chatgpt.site/"
+  },
+  {
+    id: "user-proj-11",
+    title: "Sakuramen 拉面店",
+    subtitle: "Sakuramen Udine Menu",
+    category: "ai-vibe",
+    categoryName: "AI Vibe coding",
+    coverImage: "https://images.unsplash.com/photo-1557872943-16a5ac26437e?auto=format&fit=crop&w=1200&q=80",
+    description: "拉面店菜单与招募页面，展现日式餐饮品牌体验。",
+    tags: ["网页设计", "拉面店", "AI Vibe Coding"],
+    date: "2026.09",
+    featured: true,
+    externalUrl: "https://sakuramen-udine-menu.zhaoyilong42.chatgpt.site/#lavora"
+  },
+  {
     id: "user-proj-8",
     title: "酒吧网页模板",
     subtitle: "Drank Pub Food & Drink",
